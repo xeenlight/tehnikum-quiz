@@ -1,40 +1,19 @@
 import React from "react";
+import { Header } from "./components/Header";
+import { AppLabel } from "./components/AppLabel";
+import { AppButton } from "./components/AppButton";
+import { AppLabelPhone } from "./components/AppLabelPhone";
 
 const Welcome = () => {
   return (
     <div className="container">
       <div className="wrapper">
         <div className="welcome">
-          <h1>Добро пожаловать в квиз от лучшего учебного центра</h1>
+          <Header HeaderText='Добро пожаловать в квиз от лучшего учебного центра'/>
           <form className="welcome__form">
-            <label className="input-wrapper" htmlFor="username">
-              Ваше имя
-              <input
-                required
-                type="text"
-                name="username"
-                id="username"
-                placeholder="Ваш ответ"
-              />
-              <span id="error-message">
-                Введите номер в правильном формате например
-              </span>
-            </label>
-            <label className="input-wrapper" htmlFor="username">
-              Ваш номер
-              <input
-                required
-                type="tel"
-                name="phone"
-                id="phone"
-                placeholder="+998 9- --- -- -- "
-                pattern="^(?:\+998)?(?:\d{2})?(?:\d{7})$"
-              />
-              <span id="error-message">Введите номер в правильном формате</span>
-            </label>
-            <button disabled type="submit" id="next-btn">
-              Далее
-            </button>
+            <AppLabel UserName='Ваше имя' UserAnswer='Ваш ответ' UserError='Введите номер в правильном формате например' Password="name"/> 
+            <AppLabelPhone UserPassworld="Ваш номер" UserPassworldDouble="+998 9- --- -- -- " Password="tel"/>
+            <AppButton ButtonName="Далее"/>
           </form>
         </div>
       </div>
