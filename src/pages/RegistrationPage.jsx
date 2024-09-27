@@ -12,7 +12,7 @@ const RegistrationPage  = () => {
         <Header HeaderText='Войдите в свой аккаунт'/>
           <form className="welcome__form">
             <AppLabel UserName='Введите пароль' UserAnswer='Пароль' UserError='Введите свое имя' Password="Password"/>
-            <AppLabelPhone UserPassworld='Пароль' UserPassworldDouble="Повторите пароль" Password="Password"/>
+            <AppLabelPhone UserPassworld='Повторите пароль' UserPassworldDouble="Пароль" Password="Password"/>
             <AppButton ButtonName="Авторизоваться"/>
           </form>
         </div>
