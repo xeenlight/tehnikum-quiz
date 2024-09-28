@@ -1,4 +1,8 @@
 import React from "react";
+import { Header } from "./components/Header";
+import { AppLabel } from "./components/AppLabel";
+import { AppButton } from "./components/AppButton";
+import { Span } from "./components/Span";
 
 const StepOne = () => {
   return (
@@ -8,9 +12,9 @@ const StepOne = () => {
           <div className="indicator">
             <div className="indicator__text">
               <span className="indicator__description">
-                Скидка за прохождение опроса:
+                <Span Span='Скидка за прохождение опроса'/>
               </span>
-              <span className="indicator__value">15%</span>
+              <span className="indicator__value"><Span Span='15%'/></span>
             </div>
             <div className="indicator__progressbar">
               <div className="indicator__unit indicator__unit-1"></div>
@@ -20,21 +24,19 @@ const StepOne = () => {
             </div>
           </div>
           <div className="question">
-            <h2>1. Занимательный вопрос</h2>
-            <label className="input-wrapper">
-              <input
-                required
-                type="text"
-                name="answer"
-                placeholder="Ваш ответ"
-              />
-              <span id="error-message">
-                Введите номер в правильном формате например
-              </span>
-            </label>
-            <button type="button" disabled id="next-btn">
-              Далее
-            </button>
+          <Header HeaderText='1. Занимательный вопрос' headerType="h2"/>
+          <AppLabel
+            inputPlaceholder='Ваш ответ'
+            errorText='Введите Ваш ответ'
+            inputType="text"
+            id="username"
+            isRequired
+            hasError={true}
+            /> 
+            <AppButton
+            buttonText="Далее"
+            isDisabled
+            id="next-btn"/>
           </div>
         </div>
       </div>

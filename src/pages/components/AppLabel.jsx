@@ -1,20 +1,20 @@
 
 import React from "react";
 
-export const AppLabel = ({UserName, UserAnswer, UserError, Password}) => {
+export const AppLabel = ({labelText, errorText, inputPlaceholder, inputType, id, labelValue, isRequired, labelChange, hasError}) => {
     return(
-        <label className="input-wrapper" htmlFor="username">
-        {UserName}
+        <label className={`input-wrapper ${hasError && "_error"}`} htmlFor={id}>
+        {labelText}
         <input
-          required
-          type={Password}
-          name="username"
-          id="username"
-          placeholder={UserAnswer}
+          value={labelValue}
+          required={isRequired}
+          type={inputType}
+          name={id}
+          id={id}
+          // onChange={(e) => labelChange(e.target.value)}
+          placeholder={inputPlaceholder}
         />
-        <span id="error-message">
-        {UserError}
-        </span>
+        {hasError &&  <span id="error-message">{errorText}</span>}
       </label>
     )
 }

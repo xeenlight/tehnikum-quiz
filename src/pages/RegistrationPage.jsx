@@ -2,7 +2,6 @@ import React from "react";
 import { Header } from "./components/Header";
 import { AppLabel } from "./components/AppLabel";
 import { AppButton } from "./components/AppButton";
-import { AppLabelPhone } from "./components/AppLabelPhone";
 
 const RegistrationPage  = () => {
   return (
@@ -11,9 +10,28 @@ const RegistrationPage  = () => {
         <div className="welcome">
         <Header HeaderText='Войдите в свой аккаунт'/>
           <form className="welcome__form">
-            <AppLabel UserName='Введите пароль' UserAnswer='Пароль' UserError='Введите свое имя' Password="Password"/>
-            <AppLabelPhone UserPassworld='Повторите пароль' UserPassworldDouble="Пароль" Password="Password"/>
-            <AppButton ButtonName="Авторизоваться"/>
+            <AppLabel
+            labelText='Введите пароль'
+            inputPlaceholder='Пароль'
+            errorText='Вы не ввели свой пароль'
+            inputType="Password"
+            id="username"
+            isRequired
+            hasError={true}
+            />
+            <AppLabel
+            labelText='Повторите пароль'
+            inputPlaceholder='Пароль'
+            errorText='Вы не ввели свой пароль'
+            inputType="Password"
+            id="username"
+            isRequired
+            hasError={true}
+            />
+            <AppButton
+            buttonText="Авторизоваться"
+            isDisabled
+            id="next-btn"/>
           </form>
         </div>
       </div>
