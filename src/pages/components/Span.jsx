@@ -1,6 +1,6 @@
 import React from "react";
-export const Span = ({Span}) => {
+export const Span = ({SpanText}) => {
     return(
-        <span>{Span}</span>
+        <span>{SpanText}</span>
     )
 }

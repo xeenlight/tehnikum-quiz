@@ -12,9 +12,9 @@ const StepOne = () => {
           <div className="indicator">
             <div className="indicator__text">
               <span className="indicator__description">
-                <Span Span='Скидка за прохождение опроса'/>
+                <Span SpanText='Скидка за прохождение опроса'/>
               </span>
-              <span className="indicator__value"><Span Span='15%'/></span>
+              <span className="indicator__value"><Span SpanText='15%'/></span>
             </div>
             <div className="indicator__progressbar">
               <div className="indicator__unit indicator__unit-1"></div>
