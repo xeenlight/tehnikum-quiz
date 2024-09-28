@@ -1,6 +1,9 @@
 import React from "react";
-export const Span = ({SpanText}) => {
+export const Span = ({SpanText, SpanClass}) => {
     return(
-        <span>{SpanText}</span>
+        <span className={SpanClass}>
+            {SpanText}
+        </span>
+        
     )
 }

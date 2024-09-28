@@ -11,10 +11,8 @@ const StepOne = () => {
         <div className="single-input-quiz">
           <div className="indicator">
             <div className="indicator__text">
-              <span className="indicator__description">
-                <Span SpanText='Скидка за прохождение опроса'/>
-              </span>
-              <span className="indicator__value"><Span SpanText='15%'/></span>
+                <Span SpanText='Скидка за прохождение опроса' SpanClass="indicator__description"/>
+                <Span SpanText='15%' SpanClass="indicator__value"/>
             </div>
             <div className="indicator__progressbar">
               <div className="indicator__unit indicator__unit-1"></div>
