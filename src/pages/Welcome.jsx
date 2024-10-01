@@ -1,9 +1,35 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Header } from "./components/Header";
 import { AppLabel } from "./components/AppLabel";
 import { AppButton } from "./components/AppButton";
 
 const Welcome = () => {
+  const phoneRegex = /^\+?\d{1,4}?[\s-]?\(?\d{1,4}\)?[\s-]?\d{1,4}[\s-]?\d{1,4}[\s-]?\d{1,9}$/;
+  const nameRegex = /^[a-zA-Zа-яА-ЯёЁ]{1,20}$/;
+  const [nameValue, setNameValue ]=useState("")
+  const [phoneValue, setPhoneValue]=useState("")
+  const [nameError, setNameError]=useState(false)
+  const [phoneError, setPhoneError]=useState(false)
+  const [checkBtn, setCheckBtn]=useState(true)
+
+  const handleNameClick = (value) => {
+    setNameValue(value);
+    setNameError(!nameRegex.test(value)); // Проверка сразу при изменении
+  };
+
+  const handlePhoneClick = (value) => {
+    setPhoneValue(value);
+    setPhoneError(!phoneRegex.test(value)); // Проверка сразу при изменении
+  };
+
+  useEffect(() =>{
+    if(nameValue && phoneValue){
+      setCheckBtn(false)
+    }else{
+      setCheckBtn(true)
+    }
+  }, [nameValue, phoneValue])
+    
   return (
     <div className="container">
       <div className="wrapper">
@@ -17,20 +43,27 @@ const Welcome = () => {
             inputType="text"
             id="username"
             isRequired
-            hasError={true}
+            labelChange={handleNameClick}
+            labelValue={nameValue}
+            hasError={nameError}
+
             /> 
             <AppLabel
             labelText="Ваш номер"
             inputPlaceholder="+998 9- --- -- -- "
             errorText='Введите Ваш номер телефона'
-            inputType="tel"
+            inputType="number"
             id="phone"
-            hasError={true}
+            labelChange={handlePhoneClick}
+            labelValue={phoneValue}
+            hasError={phoneError}
             />
             <AppButton
             buttonText="Далее"
-            isDisabled
-            id="next-btn"/>
+            isDisabled={checkBtn}
+            id="next-btn"
+            buttonClick={() => setNameError(!nameValue)}
+            />
           </form>
         </div>
       </div>

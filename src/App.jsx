@@ -7,7 +7,7 @@ import StepOne from './pages/StepOne';
 const App = () => {
   return (
     <div className="App">
-      <StepOne/>
+      <Welcome/>
     </div>
   );
 };

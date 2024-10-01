@@ -1,10 +1,35 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Header } from "./components/Header";
 import { AppLabel } from "./components/AppLabel";
 import { AppButton } from "./components/AppButton";
 import { Span } from "./components/Span";
 
+
+
 const StepOne = () => {
+
+  const [nameValue, setNameValue ]=useState("")
+  const [nameError, setNameError]=useState(false)
+  const [checkBtn, setCheckBtn]=useState(true)
+
+  const handleClick = (value) => {
+    setNameValue(value);
+    // Убираем ошибку, если есть текст
+    if (value) {
+      setNameError(false);
+    } else {
+      setNameError(true); // Активируем ошибку, если пусто
+    }
+  };
+
+  useEffect(() =>{
+    if(nameValue){
+      setCheckBtn(false)
+    }else{
+      setCheckBtn(true)
+    }
+  }, [nameValue])
+  
   return (
     <div className="container">
       <div className="wrapper">
@@ -29,12 +54,16 @@ const StepOne = () => {
             inputType="text"
             id="username"
             isRequired
-            hasError={true}
+            labelChange={handleClick}
+            labelValue={nameValue}
+            hasError={nameError}
             /> 
             <AppButton
             buttonText="Далее"
-            isDisabled
-            id="next-btn"/>
+            isDisabled={checkBtn}
+            id="next-btn"
+            buttonClick={() => setNameError(!nameValue)}
+            />
           </div>
         </div>
       </div>
