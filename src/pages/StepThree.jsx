@@ -1,9 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { ProgressBar } from "./components/ProgressBar";
 import { Header } from "./components/Header";
-
 import { AppButton } from "./components/AppButton";
 import { EmojiVariants } from "./components/EmojiVariants";
+
+
+
 const StepThree = () => {
   const [emoji, setEmoji]= useState(null)
 
