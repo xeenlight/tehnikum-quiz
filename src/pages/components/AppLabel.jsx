@@ -1,4 +1,3 @@
-
 import React from "react";
 
 export const AppLabel = ({labelText, errorText, inputPlaceholder, inputType, id, labelValue, isRequired, labelChange, hasError, maxLength}) => {

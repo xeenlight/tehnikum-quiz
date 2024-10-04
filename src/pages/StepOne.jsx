@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Header } from "./components/Header";
 import { AppLabel } from "./components/AppLabel";
 import { AppButton } from "./components/AppButton";
-import { Span } from "./components/Span";
+import { ProgressBar } from "./components/ProgressBar";
 
 
 
@@ -34,18 +34,7 @@ const StepOne = () => {
     <div className="container">
       <div className="wrapper">
         <div className="single-input-quiz">
-          <div className="indicator">
-            <div className="indicator__text">
-                <Span SpanText='Скидка за прохождение опроса' SpanClass="indicator__description"/>
-                <Span SpanText='15%' SpanClass="indicator__value"/>
-            </div>
-            <div className="indicator__progressbar">
-              <div className="indicator__unit indicator__unit-1"></div>
-              <div className="indicator__unit indicator__unit-2"></div>
-              <div className="indicator__unit indicator__unit-3"></div>
-              <div className="indicator__unit indicator__unit-4"></div>
-            </div>
-          </div>
+        <ProgressBar/>
           <div className="question">
           <Header HeaderText='1. Занимательный вопрос' headerType="h2"/>
           <AppLabel
