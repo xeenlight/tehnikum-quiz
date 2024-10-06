@@ -13,25 +13,25 @@ const StepThree = () => {
   const emojis = [
     {
       id:"variant-1",
-      emojiImg:"./img/laugh.png",
+      emojiImg:"https://i.ibb.co/g6MFJ4N/laugh.png",
       emojiText: "Ваш ответ 1",
       emojiAlt:"laugh"
     },
     {
       id:"variant-2",
-      emojiImg:"./img/hearts.png",
+      emojiImg:"https://i.ibb.co/djd40kT/hearts.png",
       emojiText: "Ваш ответ 2",
       emojiAlt:"hearts"
     },
     {
       id:"variant-3",
-      emojiImg:"./img/smirk.png",
+      emojiImg:"https://i.ibb.co/5c6QKr2/smirk.png",
       emojiText: "Ваш ответ 3",
       emojiAlt:"smirk"
     },
     {
       id:"variant-4",
-      emojiImg:"./img/fright.png",
+      emojiImg:"https://i.ibb.co/02bLVpV/fright.png",
       emojiText: "Ваш ответ 4",
       emojiAlt:"fright"
     },
