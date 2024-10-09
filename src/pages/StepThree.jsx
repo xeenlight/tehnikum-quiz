@@ -3,65 +3,69 @@ import { ProgressBar } from "./components/ProgressBar";
 import { Header } from "./components/Header";
 import { AppButton } from "./components/AppButton";
 import { EmojiVariants } from "./components/EmojiVariants";
-
-
-
+import { useLocation, useNavigate } from "react-router-dom";
 
 const StepThree = () => {
-  const [emoji, setEmoji]= useState(null)
+  const [emoji, setEmoji] = useState(null);
+  const location = useLocation();
+  const navigate = useNavigate();
+  const selectedCourse = location.state?.selectedCourse; // Получаем выбранный курс
+
+  const handleButtonClick = () => {
+    navigate("/StepFour", { state: { selectedCourse } }); // Передаем курс на StepFour
+  };
 
   const emojis = [
     {
-      id:"variant-1",
-      emojiImg:"https://i.ibb.co/g6MFJ4N/laugh.png",
+      id: "variant-1",
+      emojiImg: "https://i.ibb.co/g6MFJ4N/laugh.png",
       emojiText: "Ваш ответ 1",
-      emojiAlt:"laugh"
+      emojiAlt: "laugh",
     },
     {
-      id:"variant-2",
-      emojiImg:"https://i.ibb.co/djd40kT/hearts.png",
+      id: "variant-2",
+      emojiImg: "https://i.ibb.co/djd40kT/hearts.png",
       emojiText: "Ваш ответ 2",
-      emojiAlt:"hearts"
+      emojiAlt: "hearts",
     },
     {
-      id:"variant-3",
-      emojiImg:"https://i.ibb.co/5c6QKr2/smirk.png",
+      id: "variant-3",
+      emojiImg: "https://i.ibb.co/5c6QKr2/smirk.png",
       emojiText: "Ваш ответ 3",
-      emojiAlt:"smirk"
+      emojiAlt: "smirk",
     },
     {
-      id:"variant-4",
-      emojiImg:"https://i.ibb.co/02bLVpV/fright.png",
+      id: "variant-4",
+      emojiImg: "https://i.ibb.co/02bLVpV/fright.png",
       emojiText: "Ваш ответ 4",
-      emojiAlt:"fright"
+      emojiAlt: "fright",
     },
-  ]
+  ];
 
   return (
     <div className="container">
       <div className="wrapper">
         <div className="emoji-quiz">
-        <ProgressBar/>
+          <ProgressBar currentStep={3} percent="45%"/>
           <div className="question">
-            <Header headerType="h2" HeaderText="Занимательный вопрос"/>
+            <Header headerType="h2" HeaderText="Занимательный вопрос" />
             <ul className="emoji-variants">
-            {
-              emojis.map((elem) => (
+              {emojis.map((elem) => (
                 <EmojiVariants
-                id={elem.id}
-                emojiImg={elem.emojiImg}
-                emojiText={elem.emojiText}
-                emojiAlt={elem.emojiAlt}
-                key={elem.id}
-                labelChange={() => setEmoji(elem.emojiImg)}
+                  id={elem.id}
+                  emojiImg={elem.emojiImg}
+                  emojiText={elem.emojiText}
+                  emojiAlt={elem.emojiAlt}
+                  key={elem.id}
+                  labelChange={() => setEmoji(elem.emojiImg)} 
                 />
-              ))
-             }
+              ))}
             </ul>
             <AppButton
               buttonText="Далее"
               id="next-btn"
-              isDisabled={!emoji ? true : false}
+              isDisabled={!emoji} 
+              buttonClick={handleButtonClick} 
             />
           </div>
         </div>

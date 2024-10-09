@@ -3,55 +3,51 @@ import { Header } from "./components/Header";
 import { AppLabel } from "./components/AppLabel";
 import { AppButton } from "./components/AppButton";
 import { ProgressBar } from "./components/ProgressBar";
-
-
+import { useNavigate } from "react-router-dom";
 
 const StepOne = () => {
-
-  const [nameValue, setNameValue ]=useState("")
-  const [nameError, setNameError]=useState(false)
-  const [checkBtn, setCheckBtn]=useState(true)
+  const [nameValue, setNameValue] = useState("");
+  const [nameError, setNameError] = useState(false);
+  const [checkBtn, setCheckBtn] = useState(true);
+  const navigate = useNavigate();
 
   const handleClick = (value) => {
     setNameValue(value);
-    // Убираем ошибку, если есть текст
-    if (value) {
-      setNameError(false);
-    } else {
-      setNameError(true); // Активируем ошибку, если пусто
+    setNameError(!value); 
+  };
+
+  const handleButtonClick = () => {
+    if (!checkBtn) {
+      navigate("/StepTwo"); 
     }
   };
 
-  useEffect(() =>{
-    if(nameValue){
-      setCheckBtn(false)
-    }else{
-      setCheckBtn(true)
-    }
-  }, [nameValue])
-  
+  useEffect(() => {
+    setCheckBtn(!nameValue); 
+  }, [nameValue]);
+
   return (
     <div className="container">
       <div className="wrapper">
         <div className="single-input-quiz">
-        <ProgressBar/>
+          <ProgressBar currentStep={1} percent="15%"/>
           <div className="question">
-          <Header HeaderText='1. Занимательный вопрос' headerType="h2"/>
-          <AppLabel
-            inputPlaceholder='Ваш ответ'
-            errorText='Введите Ваш ответ'
-            inputType="text"
-            id="username"
-            isRequired
-            labelChange={handleClick}
-            labelValue={nameValue}
-            hasError={nameError}
-            /> 
+            <Header HeaderText='1. Занимательный вопрос' headerType="h2" />
+            <AppLabel
+              inputPlaceholder='Ваш ответ'
+              errorText='Введите Ваш ответ'
+              inputType="text"
+              id="username"
+              isRequired
+              labelChange={handleClick}
+              labelValue={nameValue}
+              hasError={nameError}
+            />
             <AppButton
-            buttonText="Далее"
-            isDisabled={checkBtn}
-            id="next-btn"
-            buttonClick={() => setNameError(!nameValue)}
+              buttonText="Далее"
+              isDisabled={checkBtn}
+              id="next-btn"
+              buttonClick={handleButtonClick} // Используем новый обработчик
             />
           </div>
         </div>

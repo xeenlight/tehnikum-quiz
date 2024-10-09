@@ -2,31 +2,38 @@ import React, { useEffect, useState } from "react";
 import { Header } from "./components/Header";
 import { AppLabel } from "./components/AppLabel";
 import { AppButton } from "./components/AppButton";
+import { useNavigate } from "react-router-dom";
 
 const Welcome = () => {
-  const phoneRegex = /^\d{1,10}$/; // Обновляем регулярное выражение для проверки только цифр
-  const nameRegex = /^[a-zA-Zа-яА-ЯёЁ]{1,20}$/;
+  const phoneRegex = /^\d{1,10}$/; // Проверка для номера телефона
+  const nameRegex = /^[a-zA-Zа-яА-ЯёЁ]{1,20}$/; // Проверка для имени
   const [nameValue, setNameValue] = useState("");
   const [phoneValue, setPhoneValue] = useState("");
   const [nameError, setNameError] = useState(false);
   const [phoneError, setPhoneError] = useState(false);
   const [checkBtn, setCheckBtn] = useState(true);
+  const navigate = useNavigate(); 
 
   const handleNameClick = (value) => {
     setNameValue(value);
-    setNameError(!nameRegex.test(value)); // Проверка сразу при изменении
+    setNameError(!nameRegex.test(value));
   };
 
   const handlePhoneClick = (value) => {
-    // Удаляем все нецифровые символы из ввода
     const cleanedValue = value.replace(/\D/g, "");
     setPhoneValue(cleanedValue);
-    setPhoneError(!phoneRegex.test(cleanedValue)); // Проверка сразу при изменении
+    setPhoneError(!phoneRegex.test(cleanedValue));
   };
 
   useEffect(() => {
     setCheckBtn(!(nameValue && phoneValue));
   }, [nameValue, phoneValue]);
+
+  const handleButtonClick = () => {
+    if (!checkBtn) {
+      navigate("/RegistrationPage"); 
+    }
+  };
 
   return (
     <div className="container">
@@ -50,7 +57,7 @@ const Welcome = () => {
               labelText="Ваш номер"
               inputPlaceholder="+998 9- --- -- -- "
               errorText='Введите Ваш номер телефона'
-              inputType="text" // Используем text, чтобы позволить вводить только цифры
+              inputType="text"
               id="phone"
               labelChange={handlePhoneClick}
               labelValue={phoneValue}
@@ -61,7 +68,7 @@ const Welcome = () => {
               buttonText="Далее"
               isDisabled={checkBtn}
               id="next-btn"
-              buttonClick={() => setNameError(!nameValue)}
+              buttonClick={handleButtonClick} // Изменил на новый обработчик
             />
           </form>
         </div>
