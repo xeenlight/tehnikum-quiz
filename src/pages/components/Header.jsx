@@ -22,5 +22,6 @@ export const Header = ({HeaderText, headerType}) => {
     }
     return(
         createHeader()
+        
     )
 }

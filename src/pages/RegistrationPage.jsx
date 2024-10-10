@@ -1,10 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react"; // добавлен useContext
 import { Header } from "./components/Header";
 import { AppLabel } from "./components/AppLabel";
 import { AppButton } from "./components/AppButton";
 import { useNavigate } from "react-router-dom";
+import { ThemeContext, themes } from "../contexts/ThemeContext"; // добавлено ThemeContext и themes
 
 const StepOne = () => {
+  const { theme } = useContext(ThemeContext); // используйте useContext для получения темы
   const [passwordValue, setPasswordValue] = useState("");
   const [confirmPasswordValue, setConfirmPasswordValue] = useState("");
   const [passwordError, setPasswordError] = useState(false);
@@ -28,12 +30,12 @@ const StepOne = () => {
 
   const handleButtonClick = () => {
     if (!checkBtn) {
-      navigate("/StepOne"); 
+      navigate("/StepOne"); // Измените путь на тот, который вам нужен
     }
   };
 
   return (
-    <div className="container">
+    <div className={`container ${theme === themes.dark ? "_dark" : ""}`}>
       <div className="wrapper">
         <div className="welcome">
           <Header HeaderText='Войдите в свой аккаунт' />
@@ -48,6 +50,7 @@ const StepOne = () => {
               labelChange={handlePasswordChange}
               labelValue={passwordValue}
               hasError={passwordError}
+              isDarkTheme={theme === themes.dark}
             />
             <AppLabel
               labelText='Повторите пароль'
@@ -59,12 +62,13 @@ const StepOne = () => {
               labelChange={handleConfirmPasswordChange}
               labelValue={confirmPasswordValue}
               hasError={confirmPasswordError}
+              isDarkTheme={theme === themes.dark}
             />
             <AppButton
               buttonText="Авторизоваться"
               isDisabled={checkBtn}
               id="next-btn"
-              buttonClick={handleButtonClick} // Добавляем обработчик нажатия
+              buttonClick={handleButtonClick}
             />
           </form>
         </div>

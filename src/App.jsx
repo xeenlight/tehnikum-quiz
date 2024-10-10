@@ -10,6 +10,7 @@ import StepFour from './pages/StepFour';
 import Thanks from './pages/Thanks';
 
 import {createBrowserRouter, RouterProvider} from "react-router-dom"
+import { ThemeProvider } from "./contexts/ThemeProvider";
 
 
 const routerConfig = createBrowserRouter([
@@ -45,10 +46,12 @@ const routerConfig = createBrowserRouter([
 
 const App = () => {
   return (
+    <ThemeProvider>
     <div className="App">
       <RouterProvider
       router={routerConfig}/>
     </div>
+    </ThemeProvider>
   );
 };
 

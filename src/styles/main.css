@@ -46,7 +46,10 @@ a {
   align-items: center;
   justify-content: center;
 }
-
+.container._dark{
+  background-color: #22222a;
+  color: #fff;
+}
 .wrapper {
   width: 338px;
   margin: 0 auto;
@@ -98,7 +101,13 @@ input {
   width: 100%;
   padding: 12px 0;
   border-bottom: 1px solid #aeb4c2;
+  background-color: #fff;
 }
+.container._dark{
+  background-color: #22222a;
+  color: #fff;
+}
+
 input::-moz-placeholder {
   color: #5a6684;
 }
@@ -319,7 +328,7 @@ button:enabled:active {
   bottom: -30px;
   left: 50%;
   transform: translateX(-50%);
-  color: #000;
+  color: #a497f9;
   font-size: 12px;
   width: 100%;
 }

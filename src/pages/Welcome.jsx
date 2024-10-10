@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Header } from "./components/Header";
 import { AppLabel } from "./components/AppLabel";
 import { AppButton } from "./components/AppButton";
 import { useNavigate } from "react-router-dom";
+import { ThemeContext, themes } from "../contexts/ThemeContext";
 
 const Welcome = () => {
   const phoneRegex = /^\d{1,10}$/; // Проверка для номера телефона
@@ -13,6 +14,7 @@ const Welcome = () => {
   const [phoneError, setPhoneError] = useState(false);
   const [checkBtn, setCheckBtn] = useState(true);
   const navigate = useNavigate(); 
+  const {theme, toggleTheme} = useContext(ThemeContext)
 
   const handleNameClick = (value) => {
     setNameValue(value);
@@ -36,9 +38,10 @@ const Welcome = () => {
   };
 
   return (
-    <div className="container">
+    <div className={`container ${theme === themes.dark && "_dark"}`}>
       <div className="wrapper">
         <div className="welcome">
+          <button onClick={toggleTheme} style={{ marginBottom: "60px" }} margi>Смена темы</button>
           <Header HeaderText='Добро пожаловать в квиз от лучшего учебного центра' headerType="h1" />
           <form className="welcome__form">
             <AppLabel
@@ -52,6 +55,7 @@ const Welcome = () => {
               labelValue={nameValue}
               hasError={nameError}
               maxLength={20}
+              isDarkTheme={theme === themes.dark}
             />
             <AppLabel
               labelText="Ваш номер"
@@ -63,6 +67,7 @@ const Welcome = () => {
               labelValue={phoneValue}
               hasError={phoneError}
               maxLength={10}
+              isDarkTheme={theme === themes.dark}
             />
             <AppButton
               buttonText="Далее"

@@ -1,11 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react"; // добавлен useContext
 import { ProgressBar } from "./components/ProgressBar";
 import { Header } from "./components/Header";
 import { AppButton } from "./components/AppButton";
 import { EmojiVariants } from "./components/EmojiVariants";
 import { useLocation, useNavigate } from "react-router-dom";
+import { ThemeContext, themes } from "../contexts/ThemeContext"; // добавлено ThemeContext и themes
 
 const StepThree = () => {
+  const { theme } = useContext(ThemeContext); // используйте useContext для получения темы
+
   const [emoji, setEmoji] = useState(null);
   const location = useLocation();
   const navigate = useNavigate();
@@ -43,12 +46,12 @@ const StepThree = () => {
   ];
 
   return (
-    <div className="container">
+    <div className={`container ${theme === themes.dark ? "_dark" : ""}`}>
       <div className="wrapper">
         <div className="emoji-quiz">
           <ProgressBar currentStep={3} percent="45%"/>
           <div className="question">
-            <Header headerType="h2" HeaderText="Занимательный вопрос" />
+            <Header headerType="h1" HeaderText="Занимательный вопрос" isDarkTheme={theme === themes.dark} />
             <ul className="emoji-variants">
               {emojis.map((elem) => (
                 <EmojiVariants
